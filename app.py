@@ -79,10 +79,12 @@ with st.container(key='conteudoPrincipal'):
 
      
     # Título
-    st.markdown("<h1 style = 'text-align: center;' > Dashboard do Orçamento Aberto </h1>", unsafe_allow_html = True)
-    
-    # Subtítulo
-    st.markdown("<p style = 'text-align: center; font-size: 1.5rem; color: black;' > Prefeitura Municipal de São Paulo </p>", unsafe_allow_html = True)
+    with st.container(key='conteudoImgHeader'):
+        st.image("assets/logo_reduzido.svg", width=90)
+
+    with st.container(key='conteudoHeader'):
+        st.markdown("<h1 style = 'text-align: center;' > Dashboard do Orçamento Aberto </h1>", unsafe_allow_html = True)
+        st.markdown("<p style = 'text-align: center; font-size: 1.5rem; color: black;' > Prefeitura Municipal de São Paulo </p>", unsafe_allow_html = True)
  
     st.markdown("<br>", unsafe_allow_html = True)
     
@@ -406,6 +408,20 @@ st.markdown(f"""
 
         .st-emotion-cache-f887e0 {{
             color: white;
+        }}
+
+        .st-key-conteudoHeader {{
+            position: fixed;
+            left: 6rem;
+            top: 3rem;
+            background-color: #f1ebdd;
+            z-index: 4;
+        }}
+        .st-key-conteudoImgHeader{{
+            left: 27rem;
+            top: 4rem;
+            position: fixed;
+            z-index: 6;
         }}
 
     </style>
