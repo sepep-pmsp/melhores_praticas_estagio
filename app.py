@@ -36,12 +36,14 @@ with st.sidebar:
     with st.expander("Metodologia"):
 
         st.markdown("""<div style = 'text-align: justify; color: white;' >
-                    Esse dashboard foi elaborado com a biblioteca Streamlit da linguagem Python. 
-                    A extração e tratamento dos dados foi realizada com a biblioteca Pandas e Geopandas.
-                    Os dados do orçamento são o Plano Plurianual por fonte e por regionalização (2022 - 2025), que foram extraídos do site do orçamento da PMSP.
-                    Foram extraídos também do GeoSampa os limites administrativos das subprefeituras.
-                    O tratamento desses dados constou no agrupamento das informações orçamentárias por subprefeituras, para a realização das visualizações dos dados.
-                    Essas visualizações foram feitas com a biblioteca Plotly que permite gerar mapas e gráficos interativos.
+                    Este dashboard foi desenvolvido com a biblioteca Streamlit, utilizando a linguagem Python. 
+                    A extração e o tratamento dos dados foram realizados com o apoio das bibliotecas Pandas e GeoPandas, 
+                    a partir de três bases de dados principais: os dados do Plano Plurianual (PPA) 2022 - 2025 por fonte de recurso e por regionalização, 
+                    obtidos no portal do orçamento da Prefeitura Municipal de São Paulo, e os limites administrativos das subprefeituras, extraídos do projeto GeoSampa. 
+                    O processo de tratamento incluiu a padronização e agregação dos dados orçamentários por subprefeitura, 
+                    possibilitando sua posterior com os polígonos georreferenciados. 
+                    As visualizações interativas: mapas coropléticos e gráficos de rosca, foram elaboradas com a biblioteca Plotly, permitindo a exploração dinâmica dos dados e 
+                    facilitando a análise da distribuição territorial dos orçamento público regionalizável.
                     </div> <br>""",
                     unsafe_allow_html = True)
         
@@ -53,7 +55,30 @@ with st.sidebar:
                     </div>""",
                     unsafe_allow_html = True)
 
+import streamlit as st
 
+st.sidebar.markdown(
+    """
+    <a href="https://www.figma.com/proto/oJOJAmPbrWnvOKqxZfexhO/Or%C3%A7amento-Aberto-%7C-Melhores-Pr%C3%A1ticas-de-Est%C3%A1gio?page-id=0%3A1&node-id=101-18&viewport=247%2C368%2C0.04&t=uhXePc1EAPYBx3VI-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=210%3A474" 
+       target="_blank">
+        <button style="
+            background-color: #F1EBDD;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        ">
+            Acesse o site
+        </button>
+    </a>
+    """,
+    unsafe_allow_html=True
+)
+
+#4CAF50
 
 # Carregar dados
 @st.cache_data
@@ -341,8 +366,8 @@ with st.container(key='conteudoPrincipal'):
                                         cmin = vmin_funcao,
                                         cmax = vmax_funcao,
                                         colorbar = dict(
-                                            title = "Planejamento orçamentário regionalizável (R$)",
-                                            title_side = "right",
+                                            title = dict(text = "Planejamento orçamentário regionalizável (R$)", side = "right", font = dict(color = "black")),
+                                            tickfont = dict(color = "black"),
                                             tickvals = ticks,
                                             ticktext = ticktext,
                                             ticks = "outside",
